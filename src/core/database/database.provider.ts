@@ -2,6 +2,7 @@ import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { Sequelize } from "sequelize-typescript";
 import { Image } from "../../modules/images/entities/image.entity";
+import { Thumbnail } from "../../modules/images/entities/thumbnail.entity";
 
 export const db =  {
     provide: SEQUELIZE,
@@ -28,7 +29,7 @@ export const db =  {
             console.error('Unable to connect to the database:', error);
         }
 
-        sequelize.addModels([Image]);
+        sequelize.addModels([Image, Thumbnail]);
         await sequelize.sync();
 
         return sequelize;
