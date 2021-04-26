@@ -1,13 +1,11 @@
-import '../src/core/config/env'
-import * as express from "express";
-import { db } from './core/database/database.provider'
+import { expressApp } from "./core/startup/server";
 
 async function startup() {
-const app = express();
-await db.useFactory();
-app.listen(process.env.PORT, ()=>
-    console.log(`Server is listening on PORT ${process.env.PORT}`)
-);
+  expressApp().then(app =>
+    app.listen(process.env.PORT, ()=>
+      console.log(`Server is listening on PORT ${process.env.PORT}`)
+    )
+  )
 }
 
 startup();
