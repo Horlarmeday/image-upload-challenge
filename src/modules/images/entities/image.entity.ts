@@ -1,5 +1,5 @@
 import { Table, Column, Model, PrimaryKey, DataType, Default, HasMany } from "sequelize-typescript";
-import { ThumbnailEntity } from "./thumbnail.entity";
+import { Thumbnail } from "./thumbnail.entity";
 
 @Table
 export class Image extends Model {
@@ -12,17 +12,11 @@ export class Image extends Model {
   id: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
-  })
-  name: string;
-
-  @Column({
     type: DataType.TEXT,
     allowNull: false
   })
   image_url: string;
 
-  @HasMany(()=> ThumbnailEntity)
-  thumbnails: ThumbnailEntity
+  @HasMany(()=> Thumbnail)
+  thumbnails: Thumbnail
 }
