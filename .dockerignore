@@ -23,6 +23,7 @@ packages/**/node_modules
 .classpath
 *.launch
 .settings/
+yarn.lock
 
 # e2e
 e2e/*.js
