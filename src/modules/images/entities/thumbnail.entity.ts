@@ -2,7 +2,7 @@ import { BelongsTo, Column, DataType, Default, ForeignKey, Model, PrimaryKey, Ta
 import { Image } from "./image.entity";
 
 @Table
-export class ThumbnailEntity extends Model{
+export class Thumbnail extends Model{
   @Default(DataType.UUIDV4)
   @PrimaryKey
   @Column({
