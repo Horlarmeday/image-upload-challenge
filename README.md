@@ -28,7 +28,7 @@ npm run test
 #### production
 For production, run below command
 ```bash
-npm run start
+npm run start:prod
 ```
 #### Docker (recommended)
 For docker, run the following commands
