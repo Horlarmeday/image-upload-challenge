@@ -1,4 +1,4 @@
-FROM node:current-alpine3.10
+FROM node:15.14-slim
 WORKDIR /app
 COPY ["package*.json", "./"]
 RUN npm install
