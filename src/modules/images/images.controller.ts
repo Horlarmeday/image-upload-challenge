@@ -8,22 +8,33 @@ export class ImagesController {
   static imagesService = ImagesService;
 
   static async uploadImage(req: Request, res: Response, next: NextFunction):Promise<SuccessResponse<Image>> {
-    const { file } = req.files;
-
-    const image = await ImagesController.imagesService.upload(file);
-    return successResponse(res, 201, image)
+    try {
+      const { file } = req.files;
+      const image = await ImagesController.imagesService.upload(file);
+      return successResponse(res, 201, image)
+    } catch (e) {
+      next(e)
+    }
   }
 
   static async findAll(req: Request, res: Response, next: NextFunction): Promise<SuccessResponse<Image[]>> {
-    const images = await ImagesController.imagesService.getAll();
+    try {
+      const images = await ImagesController.imagesService.getAll();
 
-    return successResponse(res, 200, images)
+      return successResponse(res, 200, images)
+    } catch (e) {
+      next(e)
+    }
   }
 
   static async findOne(req: Request, res: Response, next: NextFunction): Promise<SuccessResponse<Image>> {
-    const { id } = req.params;
-    const image = await ImagesController.imagesService.findOne(id);
+    try {
+      const { id } = req.params;
+      const image = await ImagesController.imagesService.findOne(id);
 
-    return successResponse(res, 200, image)
+      return successResponse(res, 200, image)
+    } catch (e) {
+      next(e)
+    }
   }
 }

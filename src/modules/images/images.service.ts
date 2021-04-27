@@ -50,24 +50,16 @@ export class ImagesService {
   }
 
   static async saveImage(file: ImageProperties): Promise<Image> {
-    try {
       return await this.imageRepository.create({
         image_url: file.name
       })
-    } catch (e) {
-      throw new ErrorResponse(500, e.message)
-    }
   }
 
   static async saveThumbnail(image: string, id: string): Promise<Thumbnail> {
-    try {
       return await this.thumbnailRepository.create({
         image_url: image,
         image_id: id
       })
-    } catch (e) {
-      throw new ErrorResponse(500, e.message)
-    }
   }
 
   static async saveImageToDisk(image: ImageProperties, path: string): Promise<void> {
