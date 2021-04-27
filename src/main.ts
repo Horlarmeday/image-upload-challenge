@@ -1,4 +1,4 @@
-import server from "./core/startup/server";
+import server from './core/startup/server';
 
 async function startup() {
     server.listen(process.env.PORT, ()=>

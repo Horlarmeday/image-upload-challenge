@@ -1,8 +1,8 @@
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
-import { Sequelize } from "sequelize-typescript";
-import { Image } from "../../modules/images/entities/image.entity";
-import { Thumbnail } from "../../modules/images/entities/thumbnail.entity";
+import { Sequelize } from 'sequelize-typescript';
+import { Image } from '../../modules/images/entities/image.entity';
+import { Thumbnail } from '../../modules/images/entities/thumbnail.entity';
 
 
 let config;

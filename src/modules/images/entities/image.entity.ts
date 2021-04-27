@@ -1,5 +1,5 @@
-import { Table, Column, Model, PrimaryKey, DataType, Default, HasMany } from "sequelize-typescript";
-import { Thumbnail } from "./thumbnail.entity";
+import { Table, Column, Model, PrimaryKey, DataType, Default, HasMany } from 'sequelize-typescript';
+import { Thumbnail } from './thumbnail.entity';
 
 @Table
 export class Image extends Model {

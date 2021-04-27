@@ -1,7 +1,7 @@
-import * as request from "supertest";
-import { Image } from "../src/modules/images/entities/image.entity";
-import server from "../src/core/startup/server";
-import { Thumbnail } from "../src/modules/images/entities/thumbnail.entity";
+import * as request from 'supertest';
+import { Image } from '../src/modules/images/entities/image.entity';
+import server from '../src/core/startup/server';
+import { Thumbnail } from '../src/modules/images/entities/thumbnail.entity';
 
 
 describe('Images endpoints /images', () => {
@@ -24,8 +24,7 @@ describe('Images endpoints /images', () => {
   it('should not allow upload an image', async () => {
     const res = await request(server)
       .post('/api/images')
-      .attach('', '');
-
+      .attach('', '');''
     expect(res.status).toBe(400);
   }, 10000);
 
