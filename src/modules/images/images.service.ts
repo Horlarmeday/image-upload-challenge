@@ -11,12 +11,13 @@ export class ImagesService {
 
   static async upload(file): Promise<Image> {
     try {
-      const path = __dirname + '../../images/' + file.name;
+      const path = 'src/public/images/' + file.name;
       const imageName = file.name;
       const sizes = [300, 200];
 
       await this.saveImageToDisk(file, path);
-      const savedImage = await this.saveImage(file);
+
+      const savedImage = await ImagesService.saveImage(file);
 
       await Promisify.map(sizes, size => {
         resizeImage({
@@ -25,7 +26,7 @@ export class ImagesService {
           imageName,
           baseImageId: savedImage.id
         })
-      }).then(() => console.log('Finished'));
+      });
       return savedImage;
     } catch (e) {
       throw new ErrorResponse(500, e.message)
@@ -48,20 +49,32 @@ export class ImagesService {
     return image;
   }
 
-  static async saveImage(image: ImageProperties): Promise<Image> {
-    return await this.imageRepository.create({
-      image_url: image.name
-    })
+  static async saveImage(file: ImageProperties): Promise<Image> {
+    try {
+      return await this.imageRepository.create({
+        image_url: file.name
+      })
+    } catch (e) {
+      throw new ErrorResponse(500, e.message)
+    }
   }
 
   static async saveThumbnail(image: string, id: string): Promise<Thumbnail> {
-    return await this.thumbnailRepository.create({
-      image_url: image,
-      image_id: id
-    })
+    try {
+      return await this.thumbnailRepository.create({
+        image_url: image,
+        image_id: id
+      })
+    } catch (e) {
+      throw new ErrorResponse(500, e.message)
+    }
   }
 
   static async saveImageToDisk(image: ImageProperties, path: string): Promise<void> {
-    await image.mv(path);
+    try {
+      await image.mv(path);
+    } catch (e) {
+      throw new ErrorResponse(500, e.message)
+    }
   }
 }
