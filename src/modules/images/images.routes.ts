@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { ImagesController } from './images.controller';
+import { imageChecks } from "./middleware/image-middleware";
 
-export default (app: Router): void => {
-  const router = Router();
+const router = Router();
 
-  app.use('/images', router);
+router.post('/', imageChecks, ImagesController.uploadImage);
+router.get('/', ImagesController.findAll);
+router.get('/:id', ImagesController.findOne);
 
-  router.post('/', ImagesController.uploadImage);
-  router.get('/', ImagesController.findAll);
-  router.get('/:id', ImagesController.findOne);
-}
+export default router;
+
 
